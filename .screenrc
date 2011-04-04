@@ -1,0 +1,11 @@
+escape ^Tt
+
+vbell on
+
+defscrollback 10000
+
+autodetach on
+
+startup_message off
+
+caption always "%?%F%{= wk}%:%{= ww}%?%-w%{=r wr}%n %t%{-}%+w %= [load %l]"
