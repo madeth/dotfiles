@@ -1,9 +1,7 @@
-if [ -e $HISTDIR ]; then; else; mkdir $HISTDIR; fi
-export HISTFILE=~/.hist/history.`date +%y%m%d%H%M`
-
 HISTSIZE=10000
 SAVEHIST=10000
-
+HISTDIR=~/.hist && [ ! -e $HISTDIR ] && mkdir $HISTDIR
+export HISTFILE=~/.hist/history.`date +%y%m%d%H%M`
 export PATH=$HOME/app/local/bin:/usr/local/bin:/usr/local/mysql/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export LS_COLORS='di=01;36'
 export LANG=ja_JP.UTF-8
