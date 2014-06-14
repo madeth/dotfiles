@@ -1,0 +1,7 @@
+# brew install rbenv-default-gems
+# vi ~/.rbenv/default-gems
+bundler
+ec2ssh
+homesick
+cocoapods
+ltsview
