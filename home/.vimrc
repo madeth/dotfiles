@@ -37,7 +37,7 @@ NeoBundle 'mbbill/undotree'
 "
 filetype plugin indent on
 
-set backup!
+"set backup!
 "set backupdir=$HOME/.vim-backup
 let &directory = &backupdir
 
