@@ -146,3 +146,6 @@ __git_files () {
   _wanted files expl 'local files' _files     
 }
 function gi() { curl http://gitignore.io/api/$@ ;}
+
+# local settings
+LOCAL_ZSHRC=~/.zshrc.local && [ -e $LOCAL_ZSHRC ] && source $LOCAL_ZSHRC
