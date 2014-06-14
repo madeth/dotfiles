@@ -1,3 +1,4 @@
+if [ -e $HISTDIR ]; then; else; mkdir $HISTDIR; fi
 export HISTFILE=~/.hist/history.`date +%y%m%d%H%M`
 
 HISTSIZE=10000
