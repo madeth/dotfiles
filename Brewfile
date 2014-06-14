@@ -28,6 +28,7 @@ cask install remote-desktop-connection
 cask install cd-to
 cask install kobito
 cask install macvim
+cask install coteditor
 cask install java # required password
 cask install keyremap4macbook # required password
 
