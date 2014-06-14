@@ -1,0 +1,22 @@
+escape ^Tt
+
+vbell on
+
+defscrollback 10000
+
+autodetach on
+
+startup_message off
+
+caption always "%?%F%{= wk}%:%{= ww}%?%-w%{=r wr}%n %t%{-}%+w %= [load %l]"
+
+attrcolor b ".I"
+
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+
+defbce "on"
+
+bind r eval 'echo "Resize window"' 'command -c resize'
+bind -c resize ^]  command
+bind -c resize j eval 'resize +1' 'command -c resize'
+bind -c resize k eval 'resize -1' 'command -c resize'

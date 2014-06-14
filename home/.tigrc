@@ -1,0 +1,5 @@
+bind main G !@hub browse -- commit/%(commit)
+bind diff G !@hub browse -- commit/%(commit)
+# See: http://qiita.com/yoshikazusawa/items/d99e8b5d6f6a45aa6e2e
+# main viewの左端にコミットIDを表示する
+set show-id = yes
