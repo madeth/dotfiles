@@ -11,6 +11,10 @@ export CPPFLAGS="-I/usr/local/Cellar/libiconv/1.14/include"
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 export TERM=xterm-256color
 export GREP_OPTIONS='--color=auto'
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
 
 autoload -U compinit
 compinit -u
@@ -46,10 +50,6 @@ alias bes="bundle exec rails s"
 alias grep='grep -s'
 
 bindkey -e
-
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
 
 function pcolor() {
     for ((f = 0; f < 255; f++)); do
