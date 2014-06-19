@@ -6,9 +6,7 @@ export PATH=$HOME/app/local/bin:/usr/local/bin:/usr/local/mysql/bin:/usr/bin:/bi
 export LS_COLORS='di=01;36'
 export LANG=ja_JP.UTF-8
 export PAGER=less
-export LDFLAGS="-L/usr/local/Cellar/libiconv/1.14/lib"
-export CPPFLAGS="-I/usr/local/Cellar/libiconv/1.14/include"
-export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+export EDITOR=vim
 export TERM=xterm-256color
 export GREP_OPTIONS='--color=auto'
 # rbenv
