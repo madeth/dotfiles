@@ -1,5 +1,31 @@
+# See. http://jonas.nitro.dk/tig/tigrc.5.html
+#      https://github.com/jonas/tig/blob/master/tigrc
+
+set line-graphics = ascii
+
+set main-view = line-number:display=no,interval=1 \
+    id:display=yes \
+    date:display=default \
+    author:display=abbreviated \
+    commit-title:graph=yes,refs=yes,overflow=72
+
+set blame-view = date:display=default \
+    id:yes \
+    author:display=abbreviated \
+    file-name:display=auto \
+    line-number:display=yes,interval=1 text
+
+bind generic <C-b> move-page-up
+bind generic <C-f> move-page-down
+bind generic \ !@hub browse
+bind generic ^ !@hub browse -- issues
+bind generic - !@hub browse -- pulls
+
 bind main G !@hub browse -- commit/%(commit)
+bind main F !?git fetch --prune
+
 bind diff G !@hub browse -- commit/%(commit)
-# See: http://qiita.com/yoshikazusawa/items/d99e8b5d6f6a45aa6e2e
-# main viewの左端にコミットIDを表示する
-set show-id = yes
+
+bind refs d !?git branch -d %(branch)
+bind refs B !?git checkout -b "%(prompt Enter new branch name: )" "%(ref)"
+bind refs G !@hub browse -- tree/%(branch)
