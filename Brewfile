@@ -30,6 +30,7 @@ cask install kobito
 cask install macvim
 cask install coteditor
 cask install the-unarchiver
+cask install simplecap
 cask install java # required password
 cask install keyremap4macbook # required password
 
