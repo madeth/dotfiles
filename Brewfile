@@ -32,6 +32,7 @@ cask install coteditor
 cask install the-unarchiver
 cask install simplecap
 cask install cyberduck
+cask install virtualbox
 cask install java # required password
 cask install keyremap4macbook # required password
 
