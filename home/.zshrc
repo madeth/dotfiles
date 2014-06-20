@@ -15,7 +15,6 @@ eval "$(rbenv init -)"
 # nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
-
 autoload -U compinit
 compinit -u
 
@@ -41,12 +40,12 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 alias -g L='less'
 alias -g T='tail'
 alias -g G='grep'
-alias ll="ls -l"
-alias ls="ls -w"
-alias be="bundle exec"
-alias bed="bundle exec rails dbconsole"
-alias bec="bundle exec rails c"
-alias bes="bundle exec rails s"
+alias ll='ls -l'
+alias ls='ls -w'
+alias be='bundle exec'
+alias bed='bundle exec rails dbconsole -p'
+alias bec='bundle exec rails c'
+alias bes='bundle exec rails s'
 alias grep='grep -s'
 
 bindkey -e
