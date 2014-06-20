@@ -47,6 +47,9 @@ alias bed='bundle exec rails dbconsole -p'
 alias bec='bundle exec rails c'
 alias bes='bundle exec rails s'
 alias grep='grep -s'
+alias g='git'
+alias h='hub'
+alias t='tig'
 
 bindkey -e
 
