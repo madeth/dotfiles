@@ -42,3 +42,6 @@
   #diff-ig-lspace = diff --ignore-space-at-eol
   #diff-ig-submodule = diff --ignore-submodule=dirty
   bs = "!f() { git blame $1 | sort -b -k 3; }; f" # blame sort by date
+  o = "!f() { hub browse; }; f"
+  p = "!f() { hub browse -- pulls; }; f"
+  i = "!f() { hub browse -- issues; }; f"
