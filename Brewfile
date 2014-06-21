@@ -8,7 +8,7 @@ tap homebrew/versions
 tap homebrew/binary
 tap homebrew/dupes # ggrep
 
-install rbenv rbenv-gem-rehash rbenv-gemset rbenv-default-gems ruby-build readline cmake coreutils findutils gawk git graphviz haproxy htop-osx httperf hub imagemagick jq libxml2 libxslt lv mongodb memcached mysql ngrep openssl pcre proctools pwgen redis sqlite tig tree uncrustify wget watch apple-gcc42 nodebrew awscli
+install rbenv rbenv-gem-rehash rbenv-gemset rbenv-default-gems ruby-build readline cmake coreutils findutils gawk git graphviz haproxy htop-osx httperf hub imagemagick jq libxml2 libxslt lv mongodb memcached mysql ngrep openssl pcre proctools pwgen redis sqlite tig tree uncrustify wget watch apple-gcc42 nodebrew awscli jsonpp
 install --disable-etcdir zsh
 
 cask install firefox
