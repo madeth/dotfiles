@@ -147,7 +147,7 @@ function json-pp {
 __git_files () { 
   _wanted files expl 'local files' _files     
 }
-function gi() { curl http://gitignore.io/api/$@ ;}
+function ignore() { curl http://www.gitignore.io/api/$@ ;}
 
 AWS_CLI_COMPLETION=/usr/local/share/zsh/site-functions/_aws && [ -e $AWS_CLI_COMPLETION ] && source $AWS_CLI_COMPLETION
 
