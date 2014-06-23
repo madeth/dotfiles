@@ -147,7 +147,14 @@ function json-pp {
 __git_files () { 
   _wanted files expl 'local files' _files     
 }
-function ignore() { curl http://www.gitignore.io/api/$@ ;}
+function ignore() { 
+  if [ $# -ne 1 ]; then
+    echo "invalid argument"
+    echo "ex) # ignore rails"
+  else
+    curl http://www.gitignore.io/api/$@;
+  fi
+}
 
 AWS_CLI_COMPLETION=/usr/local/share/zsh/site-functions/_aws && [ -e $AWS_CLI_COMPLETION ] && source $AWS_CLI_COMPLETION
 
