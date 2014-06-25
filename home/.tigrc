@@ -2,6 +2,7 @@
 #      https://github.com/jonas/tig/blob/master/tigrc
 
 set line-graphics = ascii
+set split-view-height = 50%
 
 set main-view = line-number:display=no,interval=1 \
     id:display=yes \
@@ -20,6 +21,7 @@ bind generic <C-f> move-page-down
 bind generic \ !@hub browse
 bind generic ^ !@hub browse -- issues
 bind generic - !@hub browse -- pulls
+bind generic & :toggle vertical-split
 
 bind main G !@hub browse -- commit/%(commit)
 bind main F !?git fetch --prune
