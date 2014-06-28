@@ -30,6 +30,7 @@ setopt auto_pushd
 setopt list_packed
 setopt nolistbeep
 setopt append_history
+setopt share_history
 setopt magic_equal_subst
 setopt ignore_eof
 setopt NO_flow_control
@@ -157,6 +158,40 @@ function ignore() {
     echo "ex) # ignore rails"
   else
     curl http://www.gitignore.io/api/$@;
+  fi
+}
+
+# http://blog.kenjiskywalker.org/blog/2014/06/12/peco/
+function peco-select-history() {
+  BUFFER=$(history -n 1 | \
+    tail -r | \
+    peco --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
+
+# http://weblog.bulknews.net/post/89635306479/ghq-peco-percol
+function peco-src () {
+  # set your PECO_SEARCH_PATHS
+  # ex) $ PECO_SEARCH_PATHS=(~/*)
+  local selected_dir=$(ls -df $PECO_SEARCH_PATHS | peco)
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N peco-src
+bindkey '^]' peco-src
+
+# http://qiita.com/naoty_k/items/93aa0f35aaa889f36d18
+function prake () {
+  local task=$(bundle exec rake -W -T | peco | cut -d " " -f 2)
+  if [ -n "$task" ]; then
+    echo "bundle exec rake ${task}"
+    bundle exec rake ${task}
   fi
 }
 
