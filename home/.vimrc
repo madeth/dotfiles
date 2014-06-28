@@ -53,6 +53,7 @@ set shiftwidth=2
 set expandtab
 set listchars=tab:>-
 set list
+set hlsearch
 
 set encoding=utf-8
 set termencoding=utf-8
