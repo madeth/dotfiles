@@ -56,6 +56,15 @@ alias t='tig'
 
 bindkey -e
 
+# プロンプトが表示されるたびにプロンプト文字列を評価、置換する
+setopt prompt_subst
+PROMPT='[%n@local]# '
+RPROMPT='[`rprompt-git-current-branch`%~ %*]'
+
+__git_files () {
+  _wanted files expl 'local files' _files
+}
+
 function pcolor() {
     for ((f = 0; f < 255; f++)); do
         printf "\e[38;5;%dm %3d#\e[m" $f $f
@@ -90,11 +99,6 @@ function rprompt-git-current-branch {
     # これをしないと右プロンプトの位置がずれる
     echo "%{$color%}$name%{$reset_color%} "
 }
-
-# プロンプトが表示されるたびにプロンプト文字列を評価、置換する
-setopt prompt_subst
-PROMPT='[%n@local]# '
-RPROMPT='[`rprompt-git-current-branch`%~ %*]'
 
 function psg() {
   ps aux | head -n 1
@@ -147,9 +151,6 @@ function json-pp {
   ruby -r json -e 'jj(JSON.parse!(STDIN.read))'
 }
 
-__git_files () { 
-  _wanted files expl 'local files' _files     
-}
 function ignore() { 
   if [ $# -ne 1 ]; then
     echo "invalid argument"
