@@ -8,9 +8,49 @@ tap homebrew/versions
 tap homebrew/binary
 tap homebrew/dupes # ggrep
 
-install rbenv rbenv-gem-rehash rbenv-gemset rbenv-default-gems ruby-build readline cmake coreutils findutils gawk git graphviz haproxy htop-osx httperf hub imagemagick jq libxml2 libxslt lv mongodb memcached mysql ngrep openssl pcre proctools pwgen redis sqlite tig tree uncrustify wget watch apple-gcc42 nodebrew awscli jsonpp the_silver_searcher
-install --disable-etcdir zsh
-install peco/peco/peco
+install rbenv || true
+install rbenv-gem-rehash || true
+install rbenv-gemset || true
+install rbenv-default-gems || true
+install ruby-build || true
+install readline || true
+install cmake || true
+install coreutils || true
+install findutils || true
+install gawk || true
+install git || true
+install graphviz || true
+install haproxy || true
+install htop-osx || true
+install httperf || true
+install hub || true
+install imagemagick || true
+install jq || true
+install libxml2 || true
+install libxslt || true
+install lv || true
+install mongodb || true
+install memcached || true
+install mysql || true
+install ngrep || true
+install openssl || true
+install pcre || true
+install proctools || true
+install pwgen || true
+install redis || true
+install sqlite || true
+install tig || true
+install tree || true
+install uncrustify || true
+install wget || true
+install watch || true
+install apple-gcc42 || true
+install nodebrew || true
+install awscli || true
+install jsonpp || true
+install the_silver_searcher || true
+install --disable-etcdir zsh || true
+install peco/peco/peco || true
 
 cask install firefox
 cask install google-chrome
