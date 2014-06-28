@@ -45,3 +45,6 @@
   o = "!f() { hub browse; }; f"
   p = "!f() { hub browse -- pulls; }; f"
   i = "!f() { hub browse -- issues; }; f"
+
+[ghq]
+  root = ~/src
