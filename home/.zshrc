@@ -14,6 +14,9 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 # nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+# go
+export GOPATH=$HOME/.go
+export PATH=$GOPATH/bin:$PATH
 
 autoload -U compinit
 compinit -u
