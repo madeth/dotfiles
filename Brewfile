@@ -51,7 +51,7 @@ install jsonpp || true
 install the_silver_searcher || true
 install --disable-etcdir zsh || true
 install peco/peco/peco || true
-install go
+install go || true
 
 cask install firefox
 cask install google-chrome
