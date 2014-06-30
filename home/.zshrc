@@ -195,6 +195,28 @@ function prake () {
   fi
 }
 
+function b () {
+  local selected_branch=$(git branch | cut -b 3- | peco)
+  if [ -n "$selected_branch" ]; then
+    echo "git checkout ${selected_branch}"
+    git checkout ${selected_branch}
+  fi
+}
+
+function cb () {
+  local selected_branch=$(git branch -r | cut -b 3- | peco)
+  if [ -n "$selected_branch" ]; then
+    local new_branch
+    new_branch=(${(s:/:)selected_branch})
+    echo "git checkout -b ${new_branch[2]} ${selected_branch}"
+    git checkout -b ${new_branch[2]} ${selected_branch}
+  fi
+}
+
+function ghistory () {
+  cat $HISTDIR/* | peco
+}
+
 AWS_CLI_COMPLETION=/usr/local/share/zsh/site-functions/_aws && [ -e $AWS_CLI_COMPLETION ] && source $AWS_CLI_COMPLETION
 
 # local settings
