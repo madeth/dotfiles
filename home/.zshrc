@@ -215,6 +215,7 @@ function cb () {
 }
 
 function ghistory () {
+  echo -n "\033[5;37mLoading...\033[0;39m\n"
   cat $HISTDIR/* | peco
 }
 
