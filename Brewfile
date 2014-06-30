@@ -52,6 +52,7 @@ install the_silver_searcher || true
 install --disable-etcdir zsh || true
 install peco/peco/peco || true
 install go || true
+install ctags || true
 
 cask install firefox
 cask install google-chrome

@@ -23,6 +23,8 @@ NeoBundle 'quickrun.vim'
 NeoBundle 'hallison/vim-markdown'
 NeoBundle 'YankRing.vim'
 NeoBundle 'mbbill/undotree'
+NeoBundle 'szw/vim-tags'
+NeoBundle 'tpope/vim-dispatch'
 
 "set rtp+=~/.vim/vundle.git/
 "call vundle#rc()
