@@ -34,6 +34,7 @@ setopt share_history
 setopt magic_equal_subst
 setopt ignore_eof
 setopt NO_flow_control
+setopt sh_word_split
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 setopt multios
 
