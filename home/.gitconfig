@@ -22,6 +22,7 @@
   stsb = status --short --branch
   cv = commit -v
   ci = commit
+  empty = commit --allow-empty
   co = checkout
   cb = checkout -b
   less = show
