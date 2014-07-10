@@ -197,7 +197,7 @@ function prake () {
 }
 
 function b () {
-  local selected_branch=$(git branch | cut -b 3- | peco)
+  local selected_branch=$(git branch | cut -b 3- | peco --query "$1")
   if [ -n "$selected_branch" ]; then
     echo "git checkout ${selected_branch}"
     git checkout ${selected_branch}
@@ -205,7 +205,7 @@ function b () {
 }
 
 function cb () {
-  local selected_branch=$(git branch -r | cut -b 3- | peco)
+  local selected_branch=$(git branch -r | cut -b 3- | peco --query "$1")
   if [ -n "$selected_branch" ]; then
     local new_branch
     new_branch=(${(s:/:)selected_branch})
