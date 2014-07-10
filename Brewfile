@@ -53,6 +53,7 @@ install --disable-etcdir zsh || true
 install peco/peco/peco || true
 install go || true
 install ctags || true
+install direnv || true
 
 cask install firefox
 cask install google-chrome
