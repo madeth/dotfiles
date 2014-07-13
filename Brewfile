@@ -77,6 +77,7 @@ cask install coteditor
 cask install the-unarchiver
 cask install simplecap
 cask install cyberduck
+cask install simpholders
 cask install virtualbox # required password
 cask install vagrant # required password
 cask install java # required password
