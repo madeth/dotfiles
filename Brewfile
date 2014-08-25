@@ -79,6 +79,7 @@ cask install simplecap
 cask install cyberduck
 cask install simpholders
 cask install sourcetree
+cask install ifunbox
 cask install virtualbox # required password
 cask install vagrant # required password
 cask install java # required password
