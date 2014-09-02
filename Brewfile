@@ -54,6 +54,7 @@ install peco/peco/peco || true
 install go || true
 install ctags || true
 install direnv || true
+install mitmproxy || true
 
 cask install firefox
 cask install google-chrome
