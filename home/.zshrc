@@ -221,6 +221,11 @@ function ghistory () {
   cat $HISTDIR/* | peco
 }
 
+# http://qiita.com/fmy/items/b92254d14049996f6ec3
+function agvim () {
+  vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
+
 AWS_CLI_COMPLETION=/usr/local/share/zsh/site-functions/_aws && [ -e $AWS_CLI_COMPLETION ] && source $AWS_CLI_COMPLETION
 
 # local settings
