@@ -28,8 +28,8 @@ NeoBundle 'tpope/vim-dispatch'
 
 filetype plugin indent on
 
-"set backup!
-"set backupdir=$HOME/.vim-backup
+set backup!
+set backupdir=$HOME/.vim-backup
 let &directory = &backupdir
 
 set history=20
