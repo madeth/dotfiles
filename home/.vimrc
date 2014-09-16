@@ -26,17 +26,6 @@ NeoBundle 'mbbill/undotree'
 NeoBundle 'szw/vim-tags'
 NeoBundle 'tpope/vim-dispatch'
 
-"set rtp+=~/.vim/vundle.git/
-"call vundle#rc()
-"
-"Bundle 'rails.vim'
-"Bundle 'ruby-matchit'
-"Bundle 'git://github.com/tpope/vim-endwise'
-"Bundle 'git://github.com/skwp/vim-rspec'
-"Bundle 'quickrun.vim'
-"Bundle 'hallison/vim-markdown'
-"Bundle 'javascript.vim'
-"
 filetype plugin indent on
 
 "set backup!
@@ -53,7 +42,6 @@ set showmode
 set listchars=tab:>-
 set list
 set hlsearch
-
 set encoding=utf-8
 set termencoding=utf-8
 set fileencodings=utf-8
@@ -70,15 +58,6 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |exe "normal g`\
 " 改行時のコメントをやめる
 au FileType * setlocal formatoptions-=ro
 au BufNewFile,BufRead *.rb set nowrap tabstop=2 shiftwidth=2 expandtab
-
-"let g:rubycomplete_buffer_loading = 1
-"let g:rubycomplete_classes_in_global = 1
-"let g:rubycomplete_rails = 1
-"let g:rails_level = 3
-"let g:rails_statusline = 1
-"let g:rails_level = 3
-"let g:rails_statusline = 1
-"let g:rails_syntax = 1
 
 function! InsertTabWrapper()
         let col = col('.') - 1
