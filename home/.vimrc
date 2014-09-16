@@ -50,9 +50,6 @@ set backspace=2
 set laststatus=2
 set showmatch
 set showmode
-set tabstop=4
-set shiftwidth=2
-set expandtab
 set listchars=tab:>-
 set list
 set hlsearch
@@ -78,6 +75,7 @@ autocmd FileType * setlocal formatoptions-=ro
 
 au BufNewFile,BufRead *.lua set nowrap tabstop=4 shiftwidth=4 noexpandtab nolist
 
+au BufNewFile,BufRead *.rb set nowrap tabstop=2 shiftwidth=2 expandtab
 
 "let g:rubycomplete_buffer_loading = 1
 "let g:rubycomplete_classes_in_global = 1
