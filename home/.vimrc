@@ -65,14 +65,10 @@ colorscheme delek
 
 set statusline=%<%f\ %{'['.(&fenc!=''?&fenc:&enc).']'}[TYPE=%{&ff}]%=[ROW=%l/%L],[COL=%c]
 
-autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
-
+" 前回のカーソル位置に移動
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |exe "normal g`\"" | endif
 " 改行時のコメントをやめる
-autocmd FileType * setlocal formatoptions-=ro
-
+au FileType * setlocal formatoptions-=ro
 au BufNewFile,BufRead *.rb set nowrap tabstop=2 shiftwidth=2 expandtab
 
 "let g:rubycomplete_buffer_loading = 1
