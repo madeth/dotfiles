@@ -73,8 +73,6 @@ autocmd BufReadPost *
 " 改行時のコメントをやめる
 autocmd FileType * setlocal formatoptions-=ro
 
-au BufNewFile,BufRead *.lua set nowrap tabstop=4 shiftwidth=4 noexpandtab nolist
-
 au BufNewFile,BufRead *.rb set nowrap tabstop=2 shiftwidth=2 expandtab
 
 "let g:rubycomplete_buffer_loading = 1
