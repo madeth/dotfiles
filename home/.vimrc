@@ -1,8 +1,6 @@
 set nocompatible
 filetype off
 
-set nocompatible               " Be iMproved
-
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
@@ -57,7 +55,9 @@ set statusline=%<%f\ %{'['.(&fenc!=''?&fenc:&enc).']'}[TYPE=%{&ff}]%=[ROW=%l/%L]
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |exe "normal g`\"" | endif
 " 改行時のコメントをやめる
 au FileType * setlocal formatoptions-=ro
-au BufNewFile,BufRead *.rb set nowrap tabstop=2 shiftwidth=2 expandtab
+au FileType ruby :set dictionary=/usr/local/share/vim/vim72/syntax/ruby.vim nowrap tabstop=2 shiftwidth=2 expandtab
+" nopasteのあとにno pasteにしてくれる
+au InsertLeave * set nopaste
 
 function! InsertTabWrapper()
         let col = col('.') - 1
@@ -79,9 +79,6 @@ hi Pmenu        ctermfg=Black ctermbg=Grey
 hi PmenuSel     ctermbg=Red
 hi PmenuSbar    ctermbg=Cyan
 
-autocmd FileType ruby :set dictionary=/usr/local/share/vim/vim72/syntax/ruby.vim
-"setlocal omnifunc=syntaxcomplete#Complete
-
 " insert mode cursor move
 imap <C-j> <Down>
 imap <C-k> <Up>
@@ -95,21 +92,18 @@ nnoremap <silent> <C-l> :tabnext<CR>
 nmap n nzz
 nmap N Nzz
 
-" nopasteのあとにno pasteにしてくれる
-autocmd InsertLeave * set nopaste
-
 " remove highlight
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
 " eol space
-highlight WhitespaceEOL ctermbg=red guibg=red
+hi WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
-autocmd WinEnter * match WhitespaceEOL /\s\+$/
+au BufWinEnter * match WhitespaceEOL /\s\+$/
+au WinEnter * match WhitespaceEOL /\s\+$/
 
 " utf-8 only
-highlight ZSpace cterm=underline ctermfg=red
+hi ZSpace cterm=underline ctermfg=red
 match ZSpace /　/
-
 
 " Unite
 " 入力モードで開始する
