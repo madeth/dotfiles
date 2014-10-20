@@ -9,7 +9,7 @@ EOF
   exit 1
 }
 
-_ec2ssh ()
+_ec2ssh()
 {
   local SSH_USER=$1
   local IDENTITY_FILE=$2
@@ -58,7 +58,7 @@ if $(type aws > /dev/null 2>&1) && $(type peco > /dev/null 2>&1); then
 
   _ec2ssh $SSH_USER $IDENTITY_FILE $PROFILE_NAME $QUERY
 else
-  echo 'Required aws-cli.'
+  echo 'Required aws-cli and peco.'
   exit 1
 fi
 
