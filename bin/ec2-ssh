@@ -14,12 +14,13 @@ _ec2ssh ()
   local SSH_USER=$1
   local IDENTITY_FILE=$2
   local PROFILE_NAME=$3
+  local QUERY=$4
   local selected_server=$(aws ec2 describe-instances \
     --filters 'Name=instance-state-name,Values=running' \
     --query 'Reservations[].Instances[?PublicDnsName != `null`].[Tags[?Key==`Name`] | [0].Value, PublicDnsName]' \
     --output text \
     --profile $PROFILE_NAME \
-    | sort | peco | awk '{print $2}')
+    | sort | peco --query "$QUERY" | awk '{print $2}')
   if [ -n "$selected_server" ]; then
     local cmd="ssh -l $SSH_USER -i $IDENTITY_FILE $selected_server"
     echo $cmd
@@ -52,8 +53,10 @@ if $(type aws > /dev/null 2>&1) && $(type peco > /dev/null 2>&1); then
         ;;
     esac
   done
+  shift $((OPTIND-1))
+  QUERY=$*
 
-  _ec2ssh $SSH_USER $IDENTITY_FILE $PROFILE_NAME
+  _ec2ssh $SSH_USER $IDENTITY_FILE $PROFILE_NAME $QUERY
 else
   echo 'Required aws-cli.'
   exit 1
