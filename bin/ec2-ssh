@@ -60,7 +60,7 @@ if $(type aws > /dev/null 2>&1) && $(type peco > /dev/null 2>&1); then
   shift $((OPTIND-1))
   QUERY=$*
 
-  _ec2ssh $SSH_USER $IDENTITY_FILE $PROFILE_NAME $QUERY
+  _ec2ssh "$SSH_USER" "$IDENTITY_FILE" "$PROFILE_NAME" "$QUERY"
 else
   echo 'Required aws-cli and peco.'
   exit 1
