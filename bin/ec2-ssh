@@ -4,7 +4,11 @@ _usage()
 {
   cat <<EOF
 Usage:
-    $(basename ${0}) [-l SSH_USER] [-i IDENTIFIER_FILE] [-p PROFILE_NAME]
+    $(basename ${0}) [-l SSH_USER] [-i IDENTIFIER_FILE] [-p PROFILE_NAME] [PECO_INPUT_QUERY]
+
+Setting alias:
+    $ alias test_server="$(basename ${0}) -l ec2-user -p test_server \$1"
+
 EOF
   exit 1
 }
