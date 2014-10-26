@@ -55,6 +55,7 @@ install go || true
 install ctags || true
 install direnv || true
 install mitmproxy || true
+install zsh-completions || true
 
 cask install firefox
 cask install google-chrome
