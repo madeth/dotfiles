@@ -82,7 +82,6 @@ cask install sourcetree
 cask install ifunbox
 cask install virtualbox # required password
 cask install vagrant # required password
-cask install java # required password
 cask install keyremap4macbook # required password
 
 # cask update
