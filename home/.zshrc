@@ -167,7 +167,7 @@ function ignore() {
     echo "invalid argument"
     echo "ex) # ignore rails"
   else
-    curl http://www.gitignore.io/api/$@;
+    curl https://www.gitignore.io/api/$@;
   fi
 }
 
