@@ -8,6 +8,8 @@ autodetach on
 
 startup_message off
 
+altscreen on
+
 caption always "%?%F%{= wk}%:%{= ww}%?%-w%{=r wr}%n %t%{-}%+w %= [load %l]"
 
 attrcolor b ".I"
@@ -16,7 +18,12 @@ termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
 defbce "on"
 
-bind r eval 'echo "Resize window"' 'command -c resize'
-bind -c resize ^]  command
-bind -c resize j eval 'resize +1' 'command -c resize'
-bind -c resize k eval 'resize -1' 'command -c resize'
+bind r eval 'command -c resize' 'echo "Resize window"'
+bind -c resize j eval 'command -c resize' 'resize -v +1'
+bind -c resize k eval 'command -c resize' 'resize -v -1'
+
+bind j focus down
+bind k focus up
+bind t focus top
+bind b focus bottom
+bind l windowlist
