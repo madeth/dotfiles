@@ -162,12 +162,12 @@ function json-pp {
   ruby -r json -e 'jj(JSON.parse!(STDIN.read))'
 }
 
-function ignore() { 
+function ignore() {
   if [ $# -ne 1 ]; then
     echo "invalid argument"
     echo "ex) # ignore rails"
   else
-    curl https://www.gitignore.io/api/$@;
+    curl --silent https://www.gitignore.io/api/$@;
   fi
 }
 
