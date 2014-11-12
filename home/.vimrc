@@ -23,6 +23,7 @@ NeoBundle 'YankRing.vim'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'szw/vim-tags'
 NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'vim-ruby/vim-ruby'
 
 filetype plugin indent on
 
@@ -55,7 +56,7 @@ set statusline=%<%f\ %{'['.(&fenc!=''?&fenc:&enc).']'}[TYPE=%{&ff}]%=[ROW=%l/%L]
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |exe "normal g`\"" | endif
 " 改行時のコメントをやめる
 au FileType * setlocal formatoptions-=ro
-au FileType ruby :set dictionary=/usr/local/share/vim/vim72/syntax/ruby.vim nowrap tabstop=2 shiftwidth=2 expandtab
+au FileType ruby,eruby,haml :set dictionary=/usr/local/share/vim/vim72/syntax/ruby.vim nowrap tabstop=2 shiftwidth=2 expandtab
 " nopasteのあとにno pasteにしてくれる
 au InsertLeave * set nopaste
 
