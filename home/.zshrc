@@ -63,10 +63,6 @@ alias t='tig'
 
 bindkey -e
 
-if [ -e /usr/local/share/zsh-completions ]; then
-  fpath=(/usr/local/share/zsh-completions $fpath)
-fi
-
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
 setopt prompt_subst
 PROMPT='[%n@local]# '
