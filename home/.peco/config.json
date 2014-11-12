@@ -2,6 +2,8 @@
   "Keymap": {
     "C-p": "peco.SelectPrevious",
     "C-n": "peco.SelectNext",
-    "C-c": "peco.Cancel"
+    "C-c": "peco.Cancel",
+    "C-f": "peco.ScrollPageDown",
+    "C-b": "peco.ScrollPageUp"
   }
 }
