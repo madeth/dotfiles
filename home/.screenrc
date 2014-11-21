@@ -8,8 +8,6 @@ autodetach on
 
 startup_message off
 
-altscreen on
-
 caption always "%?%F%{= wk}%:%{= ww}%?%-w%{=r wr}%n %t%{-}%+w %= [load %l]"
 
 attrcolor b ".I"
