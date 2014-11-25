@@ -25,3 +25,7 @@ bind k focus up
 bind t focus top
 bind b focus bottom
 bind l windowlist
+bind -k ku focus up
+bind -k kd focus down
+bind -k kr focus right
+bind -k kl focus left
