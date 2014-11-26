@@ -225,8 +225,38 @@ function cb () {
 }
 
 function ghistory () {
+  # Usage: $ ghistory -f query1 query2
+  local FORCE=false
+  local UNIQ_HISTFILE=.uniq_zsh_history
+  local FIND_CMD="tmp=$LC_ALL;
+    export LC_ALL=C;
+    cat $HISTDIR/* | sort | sed -e 's/ *$//' | sed '/^: /d' | uniq > $HOME/$UNIQ_HISTFILE;
+    export LC_ALL=$tmp;"
+
+  while getopts "f" opt; do
+    case $opt in
+      f)
+        FORCE=true
+        ;;
+    esac
+  done
+
+  if [ ! -e "$HOME/$UNIQ_HISTFILE" ]; then
+    FORCE=true
+  fi
+
   echo -n "\033[5;37mLoading...\033[0;39m\n"
-  cat $HISTDIR/* | peco
+
+  if $FORCE ; then
+    zsh -c "$FIND_CMD"
+  else
+    find ~/ -name "$UNIQ_HISTFILE" -maxdepth 1 -mmin +60 -exec zsh -c "$FIND_CMD" \;
+  fi
+
+  shift $((OPTIND-1))
+  local QUERY=$*
+
+  cat $UNIQ_HISTFILE | peco --query "$QUERY"
 }
 
 # http://qiita.com/fmy/items/b92254d14049996f6ec3
