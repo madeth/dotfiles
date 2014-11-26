@@ -72,6 +72,11 @@ __git_files () {
   _wanted files expl 'local files' _files
 }
 
+function reload()
+{
+  source ~/.zshrc
+}
+
 function pcolor() {
     for ((f = 0; f < 255; f++)); do
         printf "\e[38;5;%dm %3d#\e[m" $f $f
