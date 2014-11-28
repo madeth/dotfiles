@@ -256,7 +256,7 @@ function ghistory () {
   shift $((OPTIND-1))
   local QUERY=$*
 
-  cat $UNIQ_HISTFILE | peco --query "$QUERY"
+  cat $HOME/$UNIQ_HISTFILE | peco --query "$QUERY"
 }
 
 # http://qiita.com/fmy/items/b92254d14049996f6ec3
