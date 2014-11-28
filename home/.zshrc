@@ -230,7 +230,7 @@ function ghistory () {
   local UNIQ_HISTFILE=.uniq_zsh_history
   local FIND_CMD="tmp=$LC_ALL;
     export LC_ALL=C;
-    cat $HISTDIR/* | sort | sed -e 's/ *$//' | sed '/^: /d' | uniq > $HOME/$UNIQ_HISTFILE;
+    cat $HISTDIR/* | sort | sed -e 's/	//g' -e 's/ *$//' -e '/^: /d' | uniq > $HOME/$UNIQ_HISTFILE;
     export LC_ALL=$tmp;"
 
   while getopts "f" opt; do
