@@ -207,7 +207,10 @@ function prake () {
 }
 
 function b () {
-  local selected_branch=$(git branch | cut -b 3- | peco --query "$1")
+  shift $((OPTIND-1))
+  local QUERY="$*"
+  echo $QUERY
+  local selected_branch=$(git branch | cut -b 3- | peco --query "$QUERY")
   if [ -n "$selected_branch" ]; then
     echo "git checkout ${selected_branch}"
     git checkout ${selected_branch}
@@ -230,7 +233,7 @@ function ghistory () {
   local UNIQ_HISTFILE=.uniq_zsh_history
   local FIND_CMD="tmp=$LC_ALL;
     export LC_ALL=C;
-    cat $HISTDIR/* | sort | sed -e 's/	//g' -e 's/ *$//' -e '/^: /d' | uniq > $HOME/$UNIQ_HISTFILE;
+    find $HISTDIR/ -type f | xargs cat | sort | sed -e 's/	//g' -e 's/ *$//' -e '/^: /d' | uniq > $HOME/$UNIQ_HISTFILE;
     export LC_ALL=$tmp;"
 
   while getopts "f" opt; do
@@ -250,11 +253,11 @@ function ghistory () {
   if $FORCE ; then
     zsh -c "$FIND_CMD"
   else
-    find ~/ -name "$UNIQ_HISTFILE" -maxdepth 1 -mmin +60 -exec zsh -c "$FIND_CMD" \;
+    find ~/ -name "$UNIQ_HISTFILE" -maxdepth 1 -mmin +1440 -exec zsh -c "$FIND_CMD" \;
   fi
 
   shift $((OPTIND-1))
-  local QUERY=$*
+  local QUERY="$*"
 
   cat $HOME/$UNIQ_HISTFILE | peco --query "$QUERY"
 }
