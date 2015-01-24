@@ -23,12 +23,6 @@ export PATH=$GOPATH/bin:$PATH
 # direnv
 eval "$(direnv hook zsh)"
 
-autoload -U compinit
-compinit -u
-
-autoload -U colors
-colors
-
 LISTMAX=0
 setopt auto_list
 setopt auto_pushd
@@ -271,3 +265,33 @@ AWS_CLI_COMPLETION=/usr/local/share/zsh/site-functions/_aws && [ -e $AWS_CLI_COM
 
 # local settings
 LOCAL_ZSHRC=~/.zshrc.local && [ -e $LOCAL_ZSHRC ] && source $LOCAL_ZSHRC
+
+# oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
+OH_MY_ZSH=$ZSH/oh-my-zsh.sh
+if [ -e $OH_MY_ZSH ]; then
+  source $ZSH/lib/completion.zsh
+  plugins=(
+    brew
+    brew-cask
+    xcode
+    urltools
+    knife
+    vagrant
+    gem
+    pod
+  )
+  for plugin ($plugins); do
+    local alias_plugin_name=$ZSH/plugins/$plugin/$plugin.plugin.zsh
+    if [ -e $alias_plugin_name ]; then
+      source $alias_plugin_name
+    fi
+    fpath=($ZSH/plugins/$plugin $fpath)
+  done;
+fi
+
+autoload -U compinit
+compinit -u
+
+autoload -U colors
+colors
