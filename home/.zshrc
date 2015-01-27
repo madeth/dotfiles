@@ -276,7 +276,6 @@ if [ -e $OH_MY_ZSH ]; then
     brew-cask
     xcode
     urltools
-    knife
     vagrant
     gem
     pod
@@ -289,6 +288,8 @@ if [ -e $OH_MY_ZSH ]; then
     fpath=($ZSH/plugins/$plugin $fpath)
   done;
 fi
+
+fpath=($HOME/.zsh/functions $fpath)
 
 autoload -U compinit
 compinit -u
