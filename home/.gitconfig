@@ -37,11 +37,6 @@
   dw = diff --word-diff
   rdiff = "!f() { git fetch; git diff origin/$1; }; f"
   ldiff = diff HEAD^..HEAD
-  #pdiff = diff --patience
-  #hdiff = diff --histogram
-  #diff-ig-space = diff -ignore-space-change # ignore changes in amount of white space
-  #diff-ig-lspace = diff --ignore-space-at-eol
-  #diff-ig-submodule = diff --ignore-submodule=dirty
   bs = "!f() { git blame $1 | sort -b -k 3; }; f" # blame sort by date
   o = "!f() { hub browse; }; f"
   p = "!f() { hub browse -- pulls; }; f"
