@@ -2,3 +2,4 @@
 #!/usr/bin/env ruby
 
 system('curl https://raw.githubusercontent.com/a2ikm/oh-my-zsh/bd07b185b7e15c201ec00e25487e38b5c3ca9bf6/plugins/knife/_knife -o ~/.zsh/functions/_knife')
+system("mkdir -p #{home_dir}/.ssh/conf.d")
