@@ -35,7 +35,7 @@
   d = diff
   dc = diff --cached
   dw = diff --word-diff
-  rdiff = "!f() { git fetch; git diff origin/$1; }; f"
+  rdiff = "!f() { git fetch; git diff remotes/origin/$1; }; f"
   ldiff = diff HEAD^..HEAD
   bs = "!f() { git blame $1 | sort -b -k 3; }; f" # blame sort by date
   o = "!f() { hub browse; }; f"
