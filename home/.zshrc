@@ -263,27 +263,13 @@ function agvim () {
 
 function rebuild-ssh-config()
 {
-  local backup=0
   local ssh_dir=$HOME/.ssh
   local ssh_config=$ssh_dir/config
-  local ssh_config_backup=$ssh_config`date +%y%m%d%H%M`.bk
-  if [ ! -e $ssh_config_backup ]; then
-    backup=1
-  else
-    diff $ssh_config $ssh_config_backup
-    if [ ! $? -eq 0 ]; then
-      backup=1
-    fi
-  fi
-
-  if [ ! $backup -eq 0 ]; then
-    cp $ssh_config $ssh_config_backup
-    echo "backup $ssh_config to $ssh_config_backup"
-  fi
-
-  local ssh_confd__dir=$ssh_dir/conf.d
-
-  cat $ssh_confd__dir/config $ssh_confd__dir/*.config > $ssh_config
+  local ssh_confd_dir=$ssh_dir/conf.d
+  git init "$ssh_dir" && \
+    git add "$ssh_config" "$ssh_confd_dir" && \
+    git commit -m "Backup ${ssh_config}" && \
+    cat $ssh_confd_dir/config $ssh_confd_dir/*.config > $ssh_config
 }
 
 AWS_CLI_COMPLETION=/usr/local/share/zsh/site-functions/_aws && [ -e $AWS_CLI_COMPLETION ] && source $AWS_CLI_COMPLETION
