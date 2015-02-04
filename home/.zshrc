@@ -266,10 +266,12 @@ function rebuild-ssh-config()
   local ssh_dir=$HOME/.ssh
   local ssh_config=$ssh_dir/config
   local ssh_confd_dir=$ssh_dir/conf.d
-  git init "$ssh_dir" && \
+  cd $ssh_dir
+  git init . && \
     git add "$ssh_config" "$ssh_confd_dir" && \
     git commit -m "Backup ${ssh_config}" && \
     cat $ssh_confd_dir/config $ssh_confd_dir/*.config > $ssh_config
+  cd -
 }
 
 AWS_CLI_COMPLETION=/usr/local/share/zsh/site-functions/_aws && [ -e $AWS_CLI_COMPLETION ] && source $AWS_CLI_COMPLETION
