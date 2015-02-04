@@ -305,7 +305,7 @@ fi
 fpath=($HOME/.zsh/functions $fpath)
 
 autoload -U compinit
-compinit -u
+compinit -u -d ~/.zcompdumpfile
 
 autoload -U colors
 colors
