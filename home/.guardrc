@@ -1,0 +1,3 @@
+# vim:set ft=ruby
+
+Pry.commands.delete(/^$/)
