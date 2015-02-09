@@ -279,6 +279,12 @@ AWS_CLI_COMPLETION=/usr/local/share/zsh/site-functions/_aws && [ -e $AWS_CLI_COM
 # local settings
 LOCAL_ZSHRC=~/.zshrc.local && [ -e $LOCAL_ZSHRC ] && source $LOCAL_ZSHRC
 
+# zsh-completions
+ZSH_COMPLETIONS_PATH=/usr/local/share/zsh-completions
+if [ -e $ZSH_COMPLETIONS_PATH ]; then
+  fpath=($ZSH_COMPLETIONS_PATH $fpath)
+fi
+
 # oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
 OH_MY_ZSH=$ZSH/oh-my-zsh.sh
