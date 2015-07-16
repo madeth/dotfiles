@@ -29,7 +29,6 @@ setopt auto_pushd
 setopt list_packed
 setopt nolistbeep
 setopt append_history
-setopt share_history
 setopt magic_equal_subst
 setopt ignore_eof
 setopt NO_flow_control
