@@ -307,6 +307,10 @@ if [ -e $OH_MY_ZSH ]; then
   done;
 fi
 
+# emoji-cli
+EMOJI_CLI=~/.zsh/functions/emoji-cli.zsh && [ -e $EMOJI_CLI ] && source $EMOJI_CLI
+export EMOJI_CLI_DICT=~/.zsh/dict/emoji.json
+
 fpath=($HOME/.zsh/functions $fpath)
 
 autoload -U compinit
