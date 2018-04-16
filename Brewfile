@@ -1,90 +1,86 @@
-# comment out if you need update or upgrade
-# update
-# upgrade 
+tap "homebrew/core"
+tap "homebrew/bundle"
+tap "caskroom/cask"
 
-tap caskroom/cask
-install brew-cask
-tap homebrew/versions
-tap homebrew/binary
-tap homebrew/dupes # ggrep
+#brew brew-cask
+#tap homebrew/versions
+#tap homebrew/binary
+#tap homebrew/dupes # ggrep
 
-install rbenv || true
-install rbenv-gem-rehash || true
-install rbenv-gemset || true
-install rbenv-default-gems || true
-install ruby-build || true
-install readline || true
-install cmake || true
-install coreutils || true
-install findutils || true
-install gawk || true
-install git || true
-install graphviz || true
-install haproxy || true
-install htop-osx || true
-install httperf || true
-install hub || true
-install imagemagick || true
-install jq || true
-install libxml2 || true
-install libxslt || true
-install lv || true
-install mongodb || true
-install memcached || true
-install mysql || true
-install ngrep || true
-install openssl || true
-install pcre || true
-install proctools || true
-install pwgen || true
-install redis || true
-install sqlite || true
-install tig || true
-install tree || true
-install uncrustify || true
-install wget || true
-install watch || true
-install apple-gcc42 || true
-install nodebrew || true
-install awscli || true
-install jsonpp || true
-install the_silver_searcher || true
-install --disable-etcdir zsh || true
-install peco/peco/peco || true
-install go || true
-install ctags || true
-install direnv || true
-install mitmproxy || true
-install zsh-completions || true
+brew "rbenv"
+brew "rbenv-gemset"
+brew "rbenv-default-gems"
+brew "ruby-build"
+brew "readline"
+brew "cmake"
+brew "coreutils" 
+brew "findutils"
+brew "gawk"
+brew "git"
+brew "graphviz"
+brew "haproxy"
+brew "htop-osx"
+brew "httperf"
+brew "hub"
+brew "imagemagick"
+brew "jq"
+brew "libxml2"
+brew "libxslt"
+brew "lv"
+brew "ngrep"
+brew "openssl"
+brew "pcre"
+brew "proctools"
+brew "pwgen"
+brew "tig"
+brew "tree"
+brew "wget"
+brew "watch"
+brew "jsonpp"
+brew "the_silver_searcher"
+brew "zsh"
+brew "ctags"
+brew "direnv"
+brew "zsh-completions"
+brew "peco"
+brew "screen"
+brew "mysql"
+brew "emojify"
+brew "awscli"
+brew "redis"
+brew "mongodb"
+brew "memcached"
+#brew uncrustify
+#brew sqlite
+#brew mitmproxy
+#brew go
+#brew apple-gcc42
+#brew nodebrew
 
-cask install firefox
-cask install google-chrome
-cask install opera
-cask install dropbox
-cask install hipchat
-cask install skype
-cask install iexplorer
-cask install charles
-cask install mou
-cask install yorufukurou
-cask install clipmenu
-cask install crashlytics
-cask install libreoffice
-cask install remote-desktop-connection
-cask install cd-to
-cask install kobito
-cask install macvim
-cask install coteditor
-cask install the-unarchiver
-cask install simplecap
-cask install cyberduck
-cask install simpholders
-cask install sourcetree
-cask install ifunbox
-cask install provisionql
-cask install virtualbox # required password
-cask install vagrant # required password
-cask install keyremap4macbook # required password
-
-# cask update
-# cask cleanup
+cask "firefox"
+cask "google-chrome"
+cask "opera"
+cask "coteditor"
+#cask "mou"
+#cask dropbox
+#cask hipchat
+#cask skype
+#cask iexplorer
+#cask charles
+#cask clipmenu
+#cask crashlytics
+#cask libreoffice
+#cask remote-desktop-connection
+#cask cd-to
+#cask kobito
+#cask macvim
+#cask the-unarchiver
+#cask simplecap
+#cask cyberduck
+#cask simpholders
+#cask sourcetree
+#cask ifunbox
+#cask provisionql
+#cask virtualbox # required password
+#cask vagrant # required password
+#cask keyremap4macbook # required password
