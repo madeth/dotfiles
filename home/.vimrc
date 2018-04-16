@@ -19,8 +19,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'ruby-matchit'
-NeoBundle 'git://github.com/tpope/vim-endwise'
-NeoBundle 'git://github.com/skwp/vim-rspec'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'skwp/vim-rspec'
 NeoBundle 'quickrun.vim'
 NeoBundle 'hallison/vim-markdown'
 NeoBundle 'YankRing.vim'
@@ -139,7 +139,7 @@ nmap ,y :YRShow<CR>
 " https://github.com/r1chelt/dotfiles/blob/master/.vimrc
 nmap <Leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_SplitLocation = 'topleft'
+let g:undotree_WindowLayout = 'topleft'
 let g:undotree_SplitWidth = 35
 let g:undotree_diffAutoOpen = 1
 let g:undotree_diffpanelHeight = 25
