@@ -9,7 +9,7 @@ tap "caskroom/cask"
 
 brew "readline"
 brew "cmake"
-brew "coreutils" 
+brew "coreutils"
 brew "findutils"
 brew "gawk"
 brew "git"
