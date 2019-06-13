@@ -57,6 +57,7 @@ cask "firefox"
 cask "google-chrome"
 cask "opera"
 cask "coteditor"
+cask "atom"
 #cask "mou"
 #cask dropbox
 #cask hipchat
