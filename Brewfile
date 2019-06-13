@@ -7,10 +7,6 @@ tap "caskroom/cask"
 #tap homebrew/binary
 #tap homebrew/dupes # ggrep
 
-brew "rbenv"
-brew "rbenv-gemset"
-brew "rbenv-default-gems"
-brew "ruby-build"
 brew "readline"
 brew "cmake"
 brew "coreutils" 
