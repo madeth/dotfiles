@@ -1,4 +1,0 @@
-export PATH="$HOME/.rbenv/bin:$PATH"
-export POW_DST_PORT=88
-export POW_DOMAINS=dev
-eval "$(rbenv init -)"
