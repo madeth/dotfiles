@@ -12,11 +12,11 @@ export PAGER=less
 export EDITOR=vim
 export TERM=xterm-256color
 export GREP_OPTIONS='--color=auto'
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-# nodebrew
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+# anyenv
+if [ -d $HOME/.anyenv ] ; then
+  export PATH="$HOME/.anyenv/bin:$PATH"
+  eval "$(anyenv init - --no-rehash)"
+fi
 # go
 export GOPATH=$HOME/.go
 export PATH=$GOPATH/bin:$PATH
