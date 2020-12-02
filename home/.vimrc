@@ -29,6 +29,7 @@ NeoBundle 'szw/vim-tags'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'slim-template/vim-slim'
+NeoBundle 'hashivim/vim-terraform'
 
 call neobundle#end()
 
@@ -68,7 +69,8 @@ set statusline=%<%f\ %{'['.(&fenc!=''?&fenc:&enc).']'}[TYPE=%{&ff}]%=[ROW=%l/%L]
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |exe "normal g`\"" | endif
 " 改行時のコメントをやめる
 au FileType * setlocal formatoptions-=ro
-au FileType ruby,eruby,haml,scss,html :set dictionary=/usr/local/share/vim/vim72/syntax/ruby.vim nowrap tabstop=2 shiftwidth=2 expandtab
+au FileType ruby,eruby,haml,scss,html,yaml,js :set dictionary=/usr/local/share/vim/vim72/syntax/ruby.vim nowrap tabstop=2 shiftwidth=2 expandtab
+au FileType tf,javascript :set nowrap tabstop=2 shiftwidth=2 expandtab
 " nopasteのあとにno pasteにしてくれる
 au InsertLeave * set nopaste
 
