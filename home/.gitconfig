@@ -43,5 +43,10 @@
   i = "!f() { hub browse -- issues; }; f"
   wk = "!f() { hub browse -- wiki; }; f"
 
+[pager]
+  branch = cat
+
 [ghq]
   root = ~/src
+[rebase]
+  backend = apply
