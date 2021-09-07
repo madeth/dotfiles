@@ -38,10 +38,9 @@
   rdiff = "!f() { git fetch; git diff remotes/origin/$1; }; f"
   ldiff = diff HEAD^..HEAD
   bs = "!f() { git blame $1 | sort -b -k 3; }; f" # blame sort by date
-  o = "!f() { hub browse; }; f"
-  p = "!f() { hub browse -- pulls; }; f"
-  i = "!f() { hub browse -- issues; }; f"
-  wk = "!f() { hub browse -- wiki; }; f"
+  o = "!f() { gh browse; }; f"
+  p = "!f() { gh pr list --web; }; f"
+  i = "!f() { gh issue list --web; }; f"
 
 [pager]
   branch = cat
@@ -50,3 +49,9 @@
   root = ~/src
 [rebase]
   backend = apply
+[init]
+  defaultBranch = main
+[pull]
+  rebase = false
+[credentials]
+  helper = osxkeychain
