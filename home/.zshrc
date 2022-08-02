@@ -6,17 +6,16 @@ export PATH=/usr/local/bin:/usr/local/mysql/bin:/usr/bin:/bin:/usr/sbin:/sbin
 if [ -d "$HOME/bin" ]; then
   PATH=$HOME/bin:$PATH
 fi
+# https://asdf-vm.com/guide/getting-started.html#_3-install-asdf
+if [ -e "$HOME/.asdf/asdf.sh" ]; then
+ . $HOME/.asdf/asdf.sh
+fi
 export LS_COLORS='di=01;36'
 export LANG=ja_JP.UTF-8
 export PAGER=less
 export EDITOR=vim
 export TERM=xterm-256color
 export GREP_OPTIONS='--color=auto'
-# anyenv
-if [ -d $HOME/.anyenv ] ; then
-  export PATH="$HOME/.anyenv/bin:$PATH"
-  eval "$(anyenv init - --no-rehash)"
-fi
 # go
 export GOPATH=$HOME/.go
 export PATH=$GOPATH/bin:$PATH
@@ -282,6 +281,10 @@ LOCAL_ZSHRC=~/.zshrc.local && [ -e $LOCAL_ZSHRC ] && source $LOCAL_ZSHRC
 ZSH_COMPLETIONS_PATH=/usr/local/share/zsh-completions
 if [ -e $ZSH_COMPLETIONS_PATH ]; then
   fpath=($ZSH_COMPLETIONS_PATH $fpath)
+fi
+if [ -e ${ASDF_DIR}/completions ]; then
+  fpath=(${ASDF_DIR}/completions $fpath)
+  autoload -Uz compinit && compinit
 fi
 
 # oh-my-zsh
