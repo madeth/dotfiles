@@ -71,6 +71,7 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |exe "normal g`\
 au FileType * setlocal formatoptions-=ro
 au FileType ruby,eruby,haml,scss,html,yaml,js :set dictionary=/usr/local/share/vim/vim72/syntax/ruby.vim nowrap tabstop=2 shiftwidth=2 expandtab
 au FileType tf,javascript :set nowrap tabstop=2 shiftwidth=2 expandtab
+au FileType json :set nowrap tabstop=2 shiftwidth=2 expandtab
 " nopasteのあとにno pasteにしてくれる
 au InsertLeave * set nopaste
 
