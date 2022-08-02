@@ -16,9 +16,6 @@ export PAGER=less
 export EDITOR=vim
 export TERM=xterm-256color
 export GREP_OPTIONS='--color=auto'
-# go
-export GOPATH=$HOME/.go
-export PATH=$GOPATH/bin:$PATH
 # direnv
 eval "$(direnv hook zsh)"
 
