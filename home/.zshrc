@@ -54,7 +54,7 @@ bindkey -e
 
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
 setopt prompt_subst
-PROMPT='[%n@local]# '
+PROMPT='[%n@local]$ '
 RPROMPT='[`rprompt-git-current-branch`%~ %*]'
 
 __git_files () {
