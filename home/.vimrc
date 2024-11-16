@@ -11,16 +11,17 @@ set backspace=2
 set laststatus=2
 set showmatch
 set showmode
-set listchars=tab:>-
+set listchars=tab:»-,eol:↲
 set list
 set hlsearch
 set encoding=utf-8
 set termencoding=utf-8
-set fileencodings=utf-8
+set fileencodings=utf-8,cp932,sjis,euc-jp
 set fileformats=unix,dos,mac
 set cursorline
 set number
 set statusline=%<%f\ %{'['.(&fenc!=''?&fenc:&enc).']'}[TYPE=%{&ff}]%=[ROW=%l/%L],[COL=%c]
+set nofixendofline
 
 " 前回のカーソル位置に移動
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |exe "normal g`\"" | endif
