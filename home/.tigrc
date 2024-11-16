@@ -3,6 +3,11 @@
 
 set line-graphics = ascii
 set split-view-height = 50%
+set diff-highlight = true
+set refresh-mode = auto
+set highlight = true
+set mouse = true
+set mouse-scroll = 1
 
 set main-view = line-number:display=no,interval=1 \
     id:display=yes \
@@ -22,11 +27,13 @@ bind generic \ !@gh repo view --web
 bind generic ^ !@gh issue list --web
 bind generic - !@gh pr list --web
 bind generic & :toggle vertical-split
+bind generic g move-first-line
+bind generic G move-last-line
 
 bind main G !@gh browse -- %(commit)
 bind main F !?git fetch --prune
 
-bind diff G !@gh browse -- %(commit)
+#bind diff G !@gh browse -- %(commit)
 
 bind refs d !?git branch -d %(branch)
 bind refs B !?git switch -c "%(prompt Enter new branch name: )" "%(ref)"
