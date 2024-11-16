@@ -1,56 +1,56 @@
 [core]
-  editor = vim
-  pager = lv -c
-  ui=auto
+	editor = vim
+	pager = lv -c
+	ui=auto
 
 [color]
-  status = auto
-  diff = auto
-  branch = auto
-  interactive = auto
-  grep = auto
+	status = auto
+	diff = auto
+	branch = auto
+	interactive = auto
+	grep = auto
 
 [include]
-  path = ~/.gitconfig.local
+	path = ~/.gitconfig.local
 
 [alias]
-  st = status
-  b = branch
-  ba = branch -a
-  br = branch -r
-  stsb = status --short --branch
-  cv = commit -v --cleanup=scissors
-  ci = commit
-  empty = commit --allow-empty
-  co = checkout
-  cb = checkout -b
-  less = show
-  cat = cat-file -p
-  ll = log --stat --abbrev-commit
-  lg = log --graph --all --pretty=format:'%x09%Cgreen%h %cn %Creset%s%Cred%d'
-  l = log --pretty=format:\"%h (%an): %s\" --date=short -20
-  ls = log --stat -p -1
-  dcheck = diff --check
-  d = diff
-  dc = diff --cached
-  dw = diff --word-diff
-  rdiff = "!f() { git fetch; git diff remotes/origin/$1; }; f"
-  ldiff = diff HEAD^..HEAD
-  bs = "!f() { git blame $1 | sort -b -k 3; }; f" # blame sort by date
-  o = "!f() { gh browse; }; f"
-  p = "!f() { gh pr list --web; }; f"
-  i = "!f() { gh issue list --web; }; f"
+	st = status
+	b = branch
+	ba = branch -a
+	br = branch -r
+	stsb = status --short --branch
+	cv = commit -v --cleanup=scissors
+	ci = commit
+	empty = commit --allow-empty
+	co = checkout
+	cb = checkout -b
+	less = show
+	cat = cat-file -p
+	ll = log --stat --abbrev-commit
+	lg = log --graph --all --pretty=format:'%x09%Cgreen%h %cn %Creset%s%Cred%d'
+	l = log --pretty=format:\"%h (%an): %s\" --date=short -20
+	ls = log --stat -p -1
+	dcheck = diff --check
+	d = diff
+	dc = diff --cached
+	dw = diff --word-diff
+	rdiff = "!f() { git fetch; git diff remotes/origin/$1; }; f"
+	ldiff = diff HEAD^..HEAD
+	bs = "!f() { git blame $1 | sort -b -k 3; }; f" # blame sort by date
+	o = "!f() { gh browse; }; f"
+	p = "!f() { gh pr list --web; }; f"
+	i = "!f() { gh issue list --web; }; f"
 
 [pager]
-  branch = cat
+	branch = cat
 
 [ghq]
-  root = ~/src
+	root = ~/src
 [rebase]
-  backend = apply
+	backend = apply
 [init]
-  defaultBranch = main
+	defaultBranch = main
 [pull]
-  rebase = false
+	rebase = false
 [credentials]
-  helper = osxkeychain
+	helper = osxkeychain
