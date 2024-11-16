@@ -19,7 +19,7 @@
   ba = branch -a
   br = branch -r
   stsb = status --short --branch
-  cv = commit -v
+  cv = commit -v --cleanup=scissors
   ci = commit
   empty = commit --allow-empty
   co = checkout
