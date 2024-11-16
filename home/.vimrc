@@ -31,6 +31,7 @@ au FileType ruby,eruby,haml,scss,html,yaml,js :set dictionary=/usr/local/share/v
 au FileType tf,javascript :set nowrap tabstop=2 shiftwidth=2 expandtab
 au FileType json :set nowrap tabstop=2 shiftwidth=2 expandtab
 au FileType go :set tabstop=4 shiftwidth=4
+au FileType gitconfig :set tabstop=4 shiftwidth=4
 " nopasteのあとにno pasteにしてくれる
 au InsertLeave * set nopaste
 
