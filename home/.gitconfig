@@ -1,6 +1,6 @@
 [core]
 	editor = vim
-	pager = lv -c
+	pager = less -c
 	ui=auto
 
 [color]
