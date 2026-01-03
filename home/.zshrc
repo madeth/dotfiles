@@ -2,7 +2,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTDIR=~/.hist && [ ! -e $HISTDIR ] && mkdir $HISTDIR
 export HISTFILE=~/.hist/history.`date +%y%m%d%H%M`
-export PATH=/usr/local/bin:/usr/local/mysql/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 if [ -d "$HOME/bin" ]; then
   PATH=$HOME/bin:$PATH
 fi
