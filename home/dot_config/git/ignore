@@ -1,0 +1,7 @@
+# OS
+.DS_Store
+__MACOSX/
+.AppleDouble
+.LSOverride
+Thumbs.db
+*~

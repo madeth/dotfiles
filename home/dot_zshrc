@@ -1,0 +1,240 @@
+setopt PATH_DIRS
+typeset -U path fpath
+
+path=(
+  $HOME/.local/bin(N-/)
+  /usr/local/bin
+  /usr/local/sbin
+  $path
+)
+fpath=(
+  $HOME/.zsh/functions(N-/)
+  /usr/local/share/zsh/site-functions(N-/)
+  /opt/homebrew/share/zsh/site-functions(N-/)
+  $fpath
+)
+
+HISTSIZE=10000
+SAVEHIST=10000
+HISTDIR=$HOME/.hist && [ ! -e $HISTDIR ] && mkdir $HISTDIR
+export HISTFILE=$HISTDIR/history.`date +%y%m%d%H%M`
+export LS_COLORS='di=01;36'
+export LANG=ja_JP.UTF-8
+export PAGER=less
+export EDITOR=vim
+
+if (( $+commands[dircolors] )); then
+  eval "$(dircolors -b)"
+else
+  export CLICOLOR=1
+  export LSCOLORS=GxFxCxDxBxegedabagaced
+fi
+
+(( $+commands[sheldon] )) && eval "$(sheldon source)"
+
+LISTMAX=0
+setopt auto_list
+setopt auto_pushd
+setopt list_packed
+setopt nolistbeep
+setopt append_history
+setopt magic_equal_subst
+setopt ignore_eof
+setopt NO_flow_control
+setopt sh_word_split
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+setopt multios
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*default' menu select=1
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+alias -g L='less'
+alias -g T='tail'
+alias -g G='grep'
+alias ll='ls -l'
+alias ls='ls -w'
+alias be='bundle exec'
+alias bed='bundle exec rails dbconsole -p'
+alias bec='bundle exec rails c'
+alias bes='bundle exec rails s'
+alias grep='grep --color=auto'
+alias g='git'
+alias t='tig'
+alias cz='chezmoi'
+alias d='docker'
+alias reload='source $HOME/.zshrc'
+
+bindkey -e
+
+# プロンプトが表示されるたびにプロンプト文字列を評価、置換する
+setopt prompt_subst
+case "$(uname -s)" in
+  Darwin)
+    PROMPT='[%n@mac]$ '
+    ;;
+  Linux)
+    PROMPT='[%n@%m]$ '
+    ;;
+esac
+
+RPROMPT='[`rprompt-git-current-branch`%~ %*]'
+
+__git_files () {
+  _wanted files expl 'local files' _files
+}
+
+function pcolor() {
+    for ((f = 0; f < 255; f++)); do
+        printf "\e[38;5;%dm %3d#\e[m" $f $f
+        if [[ $f%8 -eq 7 ]] then
+            printf "\n"
+        fi
+    done
+}
+
+function rprompt-git-current-branch {
+    local name st color
+
+    if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
+            return
+    fi
+    name=$(git symbolic-ref --short HEAD 2> /dev/null)
+    if [[ -z $name ]]; then
+            return
+    fi
+    st=`git status 2> /dev/null`
+    if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
+            color=${fg[green]}
+    elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
+            color=${fg[yellow]}
+    elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
+            color=${fg_bold[red]}
+    else
+            color=${fg[red]}
+    fi
+
+    # %{...%} は囲まれた文字列がエスケープシーケンスであることを明示する
+    # これをしないと右プロンプトの位置がずれる
+    echo "%{$color%}$name%{$reset_color%} "
+}
+
+function ignore() {
+  if [ $# -eq 0 ]; then
+    echo "Usage: ignore <template> [template...]"
+    echo "Example: ignore rails node macos"
+    return 1
+  else
+    local IFS=','
+    curl --silent "https://www.toptal.com/developers/gitignore/api/$*"
+  fi
+}
+
+if (( $+commands[fzf] )); then
+  FUZZY_FINDER="fzf"
+elif (( $+commands[peco] )); then
+  FUZZY_FINDER="peco"
+fi
+
+if [[ -n "$FUZZY_FINDER" ]]; then
+  function fuzzy-select-history() {
+    BUFFER=$(history -n 1 | tail -r | $FUZZY_FINDER --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+  }
+
+  zle -N fuzzy-select-history
+  bindkey '^r' fuzzy-select-history
+
+  function fuzzy-src () {
+    # set your FUZZY_SEARCH_PATHS
+    # ex) $ FUZZY_SEARCH_PATHS=(~/*)
+    local selected_dir=$(ls -df $FUZZY_SEARCH_PATHS | $FUZZY_FINDER)
+    if [ -n "$selected_dir" ]; then
+      BUFFER="cd ${selected_dir}"
+      zle accept-line
+    fi
+    zle clear-screen
+  }
+  zle -N fuzzy-src
+  bindkey '^]' fuzzy-src
+
+  function b () {
+    shift $((OPTIND-1))
+    local QUERY="$*"
+    echo $QUERY
+    local selected_branch=$(git branch | cut -b 3- | $FUZZY_FINDER --query "$QUERY")
+    if [ -n "$selected_branch" ]; then
+      echo "git checkout ${selected_branch}"
+      git checkout ${selected_branch}
+    fi
+  }
+
+  function cb () {
+    local selected_branch=$(git branch -r | cut -b 3- | $FUZZY_FINDER --query "$1")
+    if [ -n "$selected_branch" ]; then
+      local new_branch
+      new_branch=(${(s:/:)selected_branch})
+      echo "git checkout -b ${new_branch[2]} ${selected_branch}"
+      git checkout -b ${new_branch[2]} ${selected_branch}
+    fi
+  }
+
+  function ghistory () {
+    # Usage: $ ghistory -f query1 query2
+    local FORCE=false
+    local UNIQ_HISTFILE=.uniq_zsh_history
+    local FIND_CMD="tmp=$LC_ALL;
+      export LC_ALL=C;
+      find $HISTDIR/ -type f | xargs cat | sort | sed -e 's/	//g' -e 's/ *$//' -e '/^: /d' | uniq > $HOME/$UNIQ_HISTFILE;
+      export LC_ALL=$tmp;"
+
+    while getopts "f" opt; do
+      case $opt in
+        f)
+          FORCE=true
+          ;;
+      esac
+    done
+
+    if [ ! -e "$HOME/$UNIQ_HISTFILE" ]; then
+      FORCE=true
+    fi
+
+    echo -n "\033[5;37mLoading...\033[0;39m\n"
+
+    if $FORCE ; then
+      zsh -c "$FIND_CMD"
+    else
+      find $HOME/ -name "$UNIQ_HISTFILE" -maxdepth 1 -mmin +1440 -exec zsh -c "$FIND_CMD" \;
+    fi
+
+    shift $((OPTIND-1))
+    local QUERY="$*"
+
+    cat $HOME/$UNIQ_HISTFILE | $FUZZY_FINDER --query "$QUERY"
+  }
+fi
+
+function rebuild-ssh-config()
+{
+  local ssh_dir=$HOME/.ssh
+  local ssh_config=$ssh_dir/config
+  local ssh_confd_dir=$ssh_dir/conf.d
+  cd $ssh_dir
+  git init . && \
+    git add "$ssh_config" "$ssh_confd_dir" && \
+    git commit -m "Backup ${ssh_config}" && \
+    cat $ssh_confd_dir/config $ssh_confd_dir/*.config > $ssh_config
+  cd -
+}
+
+autoload -U compinit
+compinit -u -d $HOME/.zcompdumpfile
+
+autoload -U colors
+colors
+
+[[ -f $HOME/.config/fzf/fzf.zsh ]] && source $HOME/.config/fzf/fzf.zsh
+
+[[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
