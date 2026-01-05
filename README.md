@@ -1,6 +1,7 @@
 # Usage
 
-
 ```
-$ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply madeth
+$ git clone https://github.com/madeth/dotfiles.git
+$ cd dotfiles
+$ sh install.sh
 ```
