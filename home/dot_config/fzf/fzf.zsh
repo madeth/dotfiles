@@ -1,5 +1,5 @@
 if (( $+commands[fzf] )); then
-  source <(fzf --zsh)
+  zsh-defer source <(fzf --zsh)
   export FZF_DEFAULT_OPTS='
     --height 80%
     --reverse
