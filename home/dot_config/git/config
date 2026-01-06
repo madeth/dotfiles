@@ -1,3 +1,5 @@
+# See: https://github.com/git/git/blob/master/Documentation/config.adoc
+
 [core]
 	editor = vim
 	pager = less -c
@@ -46,11 +48,15 @@
 
 [ghq]
 	root = ~/src
+
 [rebase]
 	backend = apply
+
 [init]
 	defaultBranch = main
+
 [pull]
 	rebase = false
+
 [credentials]
 	helper = osxkeychain
