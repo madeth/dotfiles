@@ -1,4 +1,4 @@
-setopt PATH_DIRS
+setopt PATH_DIRS # コマンド名に / が含まれている場合でもPATHから検索する
 typeset -U path fpath
 
 path=(
@@ -16,9 +16,12 @@ fpath=(
 
 HISTSIZE=10000
 SAVEHIST=10000
-HISTDIR=$HOME/.hist && [ ! -e $HISTDIR ] && mkdir $HISTDIR
-export HISTFILE=$HISTDIR/history.`date +%y%m%d%H%M`
-export LS_COLORS='di=01;36'
+HISTDIR=$HOME/.hist
+[ ! -e $HISTDIR ] && mkdir $HISTDIR
+export HISTFILE=$HISTDIR/zsh_history
+export LS_COLORS='di=01;36' # GNU lsのファイル色設定（zshの補完色設定で利用）
+export LISTMAX=0 # 補完候補表示時に確認を行わずに全表示する
+export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>' # 単語の一部として扱う文字の指定
 export LANG=ja_JP.UTF-8
 export PAGER=less
 export EDITOR=vim
@@ -32,22 +35,28 @@ fi
 
 (( $+commands[sheldon] )) && eval "$(sheldon source)"
 
-LISTMAX=0
-setopt auto_list
-setopt auto_pushd
-setopt list_packed
-setopt nolistbeep
-setopt append_history
-setopt magic_equal_subst
-setopt ignore_eof
-setopt NO_flow_control
-setopt sh_word_split
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-setopt multios
+setopt auto_list # 補完候補が複数ある場合に自動的に一覧表示する
+setopt auto_pushd # cd時にディレクトリスタックにpushする
+setopt list_packed # 補完候補一覧を詰めて表示する
+setopt nolistbeep # 補完時のビープ音を鳴らさない
+setopt magic_equal_subst # =以降もファイル名として補完する
+setopt ignore_eof # Ctrl+Dでログアウトしないようにする
+setopt NO_flow_control # フローコントロールを無効にする
+setopt sh_word_split # 変数の単語分割を行う（sh互換）
+setopt multios # 複数のリダイレクトに対応する
+setopt append_history # 履歴を追加モードで書き込む
+setopt hist_ignore_dups # 直前と同じコマンドを履歴に残さない
+setopt hist_ignore_all_dups # 過去の重複コマンドを削除する
+setopt hist_save_no_dups # 履歴保存時に重複を除去する
+setopt extended_history # 履歴ファイルに開始時刻と経過時間を記録する
+setopt inc_append_history # 履歴をインクリメンタルに追加する
+setopt hist_reduce_blanks # 余分な空白を削除して履歴に残す
+setopt hist_no_store # historyコマンド自体は履歴に残さない
+setopt hist_verify # 履歴展開時に即実行せず編集可能にする
 
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*default' menu select=1
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # 補完候補の色設定
+zstyle ':completion:*default' menu select=1 # 補完候補をメニュー選択できるようにする
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # 補完時に大文字小文字を区別しない
 
 alias -g L='less'
 alias -g T='tail'
@@ -65,10 +74,10 @@ alias cz='chezmoi'
 alias d='docker'
 alias reload='source $HOME/.zshrc'
 
-bindkey -e
+bindkey -e # キーバインドをEmacsモードにする
 
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
-setopt prompt_subst
+setopt prompt_subst # プロンプト定義内で変数を展開する
 case "$(uname -s)" in
   Darwin)
     PROMPT='[%n@mac]$ '
@@ -229,11 +238,11 @@ function rebuild-ssh-config()
   cd -
 }
 
-autoload -U compinit
-compinit -u -d $HOME/.zcompdumpfile
+autoload -U compinit # 補完機能をロード（-U: エイリアスを展開せず、標準の関数定義を使用する）
+compinit -u -d $HOME/.zcompdumpfile # 補完初期化（-u: 権限チェックを緩める、-d: ダンプファイルの場所指定）
 
-autoload -U colors
-colors
+autoload -U colors # 色変数をロード（-U: 標準関数を使用）
+colors # 色変数を初期化（$fg[red]などが使えるようになる）
 
 [[ -f $HOME/.config/fzf/fzf.zsh ]] && source $HOME/.config/fzf/fzf.zsh
 
