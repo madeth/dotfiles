@@ -3,6 +3,7 @@ setopt PATH_DIRS
 typeset -U path fpath
 
 path=(
+  /usr/local/opt/trash/bin(N-/)
   $HOME/.local/bin(N-/)
   /usr/local/bin
   /usr/local/sbin
@@ -21,6 +22,8 @@ for dir in /opt/homebrew/opt/git /usr/local/opt/git; do
     break
   fi
 done
+
+local os_name="$(uname -s)"
 
 HISTSIZE=10000
 SAVEHIST=10000
@@ -105,13 +108,16 @@ alias t='tig'
 alias cz='chezmoi'
 alias d='docker'
 alias reload='source $HOME/.zshrc'
+if [[ "$os_name" == "Darwin" ]]; then
+  alias rm='safe_trash'
+fi
 
 # キーバインドをEmacsモードにする
 bindkey -e
 
 # プロンプト定義内で変数を展開する
 setopt prompt_subst
-case "$(uname -s)" in
+case "$os_name" in
   Darwin)
     PROMPT='[%n@mac]$ '
     ;;
@@ -269,6 +275,26 @@ function rebuild-ssh-config()
     git commit -m "Backup ${ssh_config}" && \
     cat $ssh_confd_dir/config $ssh_confd_dir/*.config > $ssh_config
   cd -
+}
+
+# safe rm → Finder Trash
+safe_trash() {
+  # Homebrew の trash があればそれを使う
+  if command -v trash >/dev/null 2>&1 && [[ "$(command -v trash)" != "/usr/bin/trash" ]]; then
+    command trash "$@"
+    return
+  fi
+
+  # なければ AppleScript で Finder のゴミ箱へ
+  for f in "$@"; do
+    osascript -e 'on run argv
+      tell application "Finder"
+        repeat with f in argv
+          delete POSIX file f
+        end repeat
+      end tell
+    end run' "$f"
+  done
 }
 
 # 補完初期化
