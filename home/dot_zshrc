@@ -39,6 +39,7 @@ else
 fi
 
 (( $+commands[sheldon] )) && eval "$(sheldon source)"
+(( $+commands[mise] )) && eval "$(mise activate zsh)"
 
 # 補完候補が複数ある場合に自動的に一覧表示する
 setopt auto_list
