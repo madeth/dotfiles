@@ -1,4 +1,4 @@
-# See: https://github.com/git/git/blob/master/Documentation/config.adoc
+# https://github.com/git/git/blob/master/Documentation/config.adoc
 
 [core]
 	editor = vim
@@ -58,5 +58,7 @@
 [pull]
 	rebase = false
 
+{{ if eq .chezmoi.os "darwin" }}
 [credentials]
 	helper = osxkeychain
+{{ end }}  
