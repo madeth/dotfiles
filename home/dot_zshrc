@@ -14,7 +14,13 @@ fpath=(
   /opt/homebrew/share/zsh/site-functions(N-/)
   $fpath
 )
-(( $+commands[brew] )) && path+=("$(brew --prefix git)/share/git-core/contrib/diff-highlight"(N-/))
+# brew --prefix git is slow, so check standard locations
+for dir in /opt/homebrew/opt/git /usr/local/opt/git; do
+  if [[ -d "$dir/share/git-core/contrib/diff-highlight" ]]; then
+    path+=("$dir/share/git-core/contrib/diff-highlight")
+    break
+  fi
+done
 
 HISTSIZE=10000
 SAVEHIST=10000
@@ -265,16 +271,25 @@ function rebuild-ssh-config()
   cd -
 }
 
-# 補完機能をロード（-U: エイリアスを展開せず、標準の関数定義を使用する）
-autoload -U compinit
-# 補完初期化（-u: 権限チェックを緩める、-d: ダンプファイルの場所指定）
-compinit -u -d $HOME/.zcompdumpfile
+# 補完初期化
+# 24時間に1回だけ再生成し、それ以外はセキュリティチェックをスキップ(-C)して高速化
+autoload -Uz compinit
+local zcompdump="$HOME/.zcompdumpfile"
+if [[ -n ${zcompdump}(#qN.mh+24) ]]; then
+    # 24時間以上経過: 再生成
+    compinit -u -d "$zcompdump"
+    # mtimeを更新（次回チェック用）
+    touch "$zcompdump"
+else
+    # 24時間以内: キャッシュ利用（チェックなし）
+    compinit -u -C -d "$zcompdump"
+fi
 
 # 色変数をロード（-U: 標準関数を使用）
 autoload -U colors
 # 色変数を初期化（$fg[red]などが使えるようになる）
 colors
 
-[[ -f $HOME/.config/fzf/fzf.zsh ]] && source $HOME/.config/fzf/fzf.zsh
+[[ -f $HOME/.config/fzf/fzf.zsh ]] && zsh-defer source $HOME/.config/fzf/fzf.zsh
 
-[[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+[[ -f $HOME/.zshrc.local ]] && zsh-defer source $HOME/.zshrc.local
