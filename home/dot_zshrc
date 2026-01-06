@@ -13,6 +13,7 @@ fpath=(
   /opt/homebrew/share/zsh/site-functions(N-/)
   $fpath
 )
+(( $+commands[brew] )) && path+=("$(brew --prefix git)/share/git-core/contrib/diff-highlight"(N-/))
 
 HISTSIZE=10000
 SAVEHIST=10000
