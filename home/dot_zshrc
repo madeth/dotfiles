@@ -285,8 +285,6 @@ else
     compinit -u -C -d "$zcompdump"
 fi
 
-
-
 [[ -f $HOME/.config/fzf/fzf.zsh ]] && zsh-defer source $HOME/.config/fzf/fzf.zsh
 
 [[ -f $HOME/.zshrc.local ]] && zsh-defer source $HOME/.zshrc.local
