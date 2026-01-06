@@ -147,18 +147,18 @@ function rprompt-git-current-branch {
     fi
     st=`git status 2> /dev/null`
     if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
-            color=${fg[green]}
+            color='%F{green}'
     elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
-            color=${fg[yellow]}
+            color='%F{yellow}'
     elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
-            color=${fg_bold[red]}
+            color='%B%F{red}'
     else
-            color=${fg[red]}
+            color='%F{red}'
     fi
 
     # %{...%} は囲まれた文字列がエスケープシーケンスであることを明示する
     # これをしないと右プロンプトの位置がずれる
-    echo "%{$color%}$name%{$reset_color%} "
+    echo "$color$name%f%b "
 }
 
 function ignore() {
@@ -285,10 +285,7 @@ else
     compinit -u -C -d "$zcompdump"
 fi
 
-# 色変数をロード（-U: 標準関数を使用）
-autoload -U colors
-# 色変数を初期化（$fg[red]などが使えるようになる）
-colors
+
 
 [[ -f $HOME/.config/fzf/fzf.zsh ]] && zsh-defer source $HOME/.config/fzf/fzf.zsh
 
