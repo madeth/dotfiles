@@ -1,6 +1,6 @@
 auto-update = off
 
-font-family = "Menlo", "Symbols Nerd Font", "Hiragino Kaku Gothic ProN", "Apple Color Emoji"
+font-family = "JetBrainsMono Nerd Font Mono", "Noto Sans JP", "Apple Color Emoji"
 font-size = 13
 font-feature = -dlig
 font-thicken = true
