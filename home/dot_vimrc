@@ -1,0 +1,124 @@
+" ファイル形式の検出、プラグイン、インデントを有効にする
+filetype plugin indent on
+" Vi互換モードを無効にし、Vimの機能をフルに使えるようにする
+set nocompatible
+" バックアップファイルの作成を切り替える（反転）
+set backup!
+" バックアップファイルの保存先ディレクトリを指定する
+set backupdir=$HOME/.vim-backup
+" スワップファイルの保存先をバックアップディレクトリと同じにする
+let &directory = &backupdir
+
+" コマンド・検索パターンの履歴を20件保存する
+set history=20
+" 右下のステータス行にカーソル位置（行・列）を表示する
+set ruler
+" 新しい行を開始したときに、前の行のインデントを継承する
+set autoindent
+" インサートモードでのバックスペースの動作を柔軟にする（インデント、行末、開始位置での削除を許可）
+set backspace=2
+" ステータスラインを常に表示する（ウィンドウが1つでも）
+set laststatus=2
+" 閉じ括弧を入力したときに、対応する開き括弧を一時的に強調表示する
+set showmatch
+" 現在のモード（挿入、置換など）を画面下部に表示する
+set showmode
+" 不可視文字（タブ、行末）の表示記号を設定する
+set listchars=tab:»-,eol:↲
+" 不可視文字（タブや行末など）を表示する
+set list
+" 検索パターンに一致するテキストを強調表示する
+set hlsearch
+" Vim内部で使用する文字コードをUTF-8に設定する
+set encoding=utf-8
+" 端末に出力する文字コードをUTF-8に設定する
+set termencoding=utf-8
+" ファイル読み込み時に試行する文字コードの順序を設定する
+set fileencodings=utf-8,cp932,sjis,euc-jp
+" ファイル読み込み時に試行する改行コードの順序を設定する
+set fileformats=unix,dos,mac
+" カーソルのある行を強調表示（アンダーライン等）する
+set cursorline
+" 行番号を表示する
+set number
+" ステータスラインの表示内容をカスタマイズする
+set statusline=%<%f\ %{'['.(&fenc!=''?&fenc:&enc).']'}[TYPE=%{&ff}]%=[ROW=%l/%L],[COL=%c]
+" 保存時にファイル末尾の改行を自動的に追加しない
+set nofixendofline
+
+" 前回のカーソル位置に移動
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |exe "normal g`\"" | endif
+" 改行時のコメントをやめる
+au FileType * setlocal formatoptions-=ro
+" 特定のファイルタイプ（Ruby等）で、インデント幅を2スペースにし、折り返しを無効にする
+au FileType ruby,eruby,haml,scss,html,yaml,js :set dictionary=/usr/local/share/vim/vim72/syntax/ruby.vim nowrap tabstop=2 shiftwidth=2 expandtab
+" TerraformやJSファイルで、インデント幅を2スペースにする
+au FileType tf,javascript :set nowrap tabstop=2 shiftwidth=2 expandtab
+" JSONファイルで、インデント幅を2スペースにする
+au FileType json :set nowrap tabstop=2 shiftwidth=2 expandtab
+" Go言語ファイルで、インデント幅を4スペース（タブ）にする
+au FileType go :set tabstop=4 shiftwidth=4
+" gitconfigファイルで、インデント幅を4スペース（タブ）にする
+au FileType gitconfig :set tabstop=4 shiftwidth=4
+" nopasteのあとにno pasteにしてくれる
+" インサートモードを抜けるとき、pasteモードを無効にする（誤操作防止）
+au InsertLeave * set nopaste
+
+" タブキー押下時の動作を定義（補完候補があるなら選択、なければタブ挿入）
+function! InsertTabWrapper()
+        let col = col('.') - 1
+        if !col || getline('.')[col - 1] !~ '\k'
+                return "\<TAB>"
+        else
+                if pumvisible()
+                        return "\<C-N>"
+                else
+                        return "\<C-N>\<C-P>"
+                end
+        endif
+endfunction
+
+" ポップアップメニュー（補完候補など）の色設定
+hi Pmenu        ctermfg=Black ctermbg=Grey
+hi PmenuSel     ctermbg=Red
+hi PmenuSbar    ctermbg=Cyan
+
+" インサートモードでのTabキーを、上で定義したInsertTabWrapper関数に割り当てる
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+" insert mode cursor move
+" インサートモードでCtrlキーを使ってカーソル移動できるようにする
+imap <C-j> <Down>
+imap <C-k> <Up>
+imap <C-h> <Left>
+imap <C-l> <Right>
+" tab
+" タブ操作のキーマッピング：Tabで次へ
+nnoremap <Tab>  gt
+" タブ操作のキーマッピング：Ctrl-hで前へ
+nnoremap <silent> <C-h> :tabprevious<CR>
+" タブ操作のキーマッピング：Ctrl-lで次へ
+nnoremap <silent> <C-l> :tabnext<CR>
+
+" 検索時に画面の真ん中に表示してくれる
+nmap n nzz
+nmap N Nzz
+
+" remove highlight
+" ESC連打で検索時のハイライトを解除する
+nnoremap <ESC><ESC> :nohlsearch<CR>
+
+" 行末の余計な空白を定義
+hi WhitespaceEOL ctermbg=red guibg=red
+" 行末の余計な空白をハイライトする
+match WhitespaceEOL /\s\+$/
+au BufWinEnter * match WhitespaceEOL /\s\+$/
+au WinEnter * match WhitespaceEOL /\s\+$/
+
+" 全角スペースをハイライト設定
+autocmd Colorscheme * highlight FullWidthSpace ctermbg=red
+" 全角スペースをハイライトする
+autocmd VimEnter * match FullWidthSpace /　/
+" カラースキームをkoehlerに設定する
+colorscheme koehler
+" シンタックスハイライト（構文強調）を有効にする
+syntax enable

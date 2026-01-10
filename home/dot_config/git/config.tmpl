@@ -1,3 +1,5 @@
+# https://github.com/git/git/blob/master/Documentation/config.adoc
+
 [core]
 	editor = vim
 	pager = less -c
@@ -11,7 +13,7 @@
 	grep = auto
 
 [include]
-	path = ~/.gitconfig.local
+	path = ~/.config/git/config.local
 
 [alias]
 	st = status
@@ -43,14 +45,23 @@
 
 [pager]
 	branch = cat
+	log  = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
 
 [ghq]
 	root = ~/src
+
 [rebase]
 	backend = apply
+
 [init]
 	defaultBranch = main
+
 [pull]
 	rebase = false
+
+{{ if eq .chezmoi.os "darwin" }}
 [credentials]
 	helper = osxkeychain
+{{ end }}

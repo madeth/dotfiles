@@ -1,8 +1,0 @@
-# vim:filetype=ruby
-#!/usr/bin/env ruby
-
-system('curl https://raw.githubusercontent.com/a2ikm/oh-my-zsh/bd07b185b7e15c201ec00e25487e38b5c3ca9bf6/plugins/knife/_knife -o ~/.zsh/functions/_knife')
-system('curl https://raw.githubusercontent.com/b4b4r07/emoji-cli/fdb9f8dd7933785b71718313c0aa2ee565c888d7/emoji-cli.zsh -o ~/.zsh/functions/emoji-cli.zsh')
-system('mkdir ~/.zsh/dict && curl https://raw.githubusercontent.com/b4b4r07/emoji-cli/fdb9f8dd7933785b71718313c0aa2ee565c888d7/dict/emoji.json -o ~/.zsh/dict/emoji.json')
-system("mkdir -p #{home_dir}/.ssh/conf.d")
-system("cd #{home_dir}/.ssh && git init")

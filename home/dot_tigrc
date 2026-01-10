@@ -1,0 +1,57 @@
+# https://github.com/jonas/tig/blob/master/doc/tigrc.5.adoc
+
+# 罫線をASCII文字で表示
+set line-graphics = auto
+# 分割ビューの高さを50%に設定
+set split-view-height = 50%
+# diff-highlight機能を使用
+set diff-highlight = true
+# ファイル変更を自動検知して更新
+set refresh-mode = auto
+# マウス操作を有効化
+set mouse = true
+# マウススクロールの行数設定
+set mouse-scroll = 1
+
+# メインビューの表示設定
+set main-view = line-number:display=no \
+    id:display=yes \
+    date:display=default \
+    author:display=abbreviated \
+    commit-title:graph=yes,refs=yes,overflow=72
+
+# Blameビューの表示設定
+set blame-view = date:display=default \
+    id:yes \
+    author:display=abbreviated \
+    file-name:display=auto \
+    line-number:display=yes,interval=1 text
+
+# ページアップ
+bind generic <C-b> move-page-up
+# ページダウン
+bind generic <C-f> move-page-down
+# ブラウザでリポジトリを表示 (gh)
+bind generic \ !@gh repo view --web
+# ブラウザでIssue一覧を表示 (gh)
+bind generic ^ !@gh issue list --web
+# ブラウザでPR一覧を表示 (gh)
+bind generic - !@gh pr list --web
+# 垂直分割の切り替え
+bind generic & :toggle vertical-split
+# 最初の行へ移動
+bind generic g move-first-line
+# 最後の行へ移動
+bind generic G move-last-line
+
+# メインビュー: 選択中のコミットをGitHubで開く
+bind main O !@gh browse -- %(commit)
+# メインビュー: フェッチとPruneを実行
+bind main F !?git fetch --prune
+
+# Refsビュー: ブランチ削除
+bind refs d !?git branch -d %(branch)
+# Refsビュー: 新規ブランチ作成してチェックアウト
+bind refs B !?git switch -c "%(prompt Enter new branch name: )" "%(ref)"
+# Refsビュー: 選択中のコミットをGitHubで開く
+bind refs O !@gh browse -- %(commit)
