@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Applying macOS defaults..."
+
+# ==============================================================================
+# 一般設定 (NSGlobalDomain)
+# ==============================================================================
+
+# 全てのファイルの拡張子を表示
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# スマート引用符の自動変換を無効化
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# スマートダッシュの自動変換を無効化
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# キーリピートの速度設定 (数値が小さいほど速い)
+defaults write NSGlobalDomain KeyRepeat -int 2
+
+# キーリピート開始までの時間設定 (数値が小さいほど速い)
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+# スペルの自動修正を無効化
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Webサイトでのスペル自動修正を無効化
+defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false
+
+# スペース2回でピリオドを入力する機能を無効化
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# キー長押しでアクセント記号メニューを表示する機能を無効化（キーリピートを優先）
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+
+# ==============================================================================
+# Finder 設定
+# ==============================================================================
+
+# 隠しファイルを表示
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# パスバーを表示
+defaults write com.apple.finder ShowPathbar -bool true
+
+# ステータスバーを表示
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# 設定を反映させるために Finder を再起動
+killall Finder
+
+
+# ==============================================================================
+# Dock 設定
+# ==============================================================================
+
+# Dock を自動的に隠す
+defaults write com.apple.dock autohide -bool true
+
+# Dock が表示される際の遅延を無効化
+defaults write com.apple.dock autohide-delay -int 0
+
+# Dock が隠れるアニメーションの速度を最速に設定
+defaults write com.apple.dock autohide-time-modifier -int 0
+
+# 最近使用したアプリケーションを Dock に表示しない
+defaults write com.apple.dock show-recents -bool false
+
+# 設定を反映させるために Dock を再起動
+killall Dock
+
+
+# ==============================================================================
+# デスクトップサービス (ファイルシステム) 設定
+# ==============================================================================
+
+# ネットワークストレージに .DS_Store ファイルを作成しない
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# USBストレージに .DS_Store ファイルを作成しない
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+
+# ==============================================================================
+# スクリーンキャプチャ設定
+# ==============================================================================
+
+# スクリーンショット撮影時の影を無効化
+defaults write com.apple.screencapture disable-shadow -bool true
+
+# 設定を反映させるために SystemUIServer を再起動
+killall SystemUIServer
+
+
+# ------------------------------------------------------------------------------
+# その他（任意実行用メモ）
+# ------------------------------------------------------------------------------
+# sudo nvram StartupMute=%01
+
+echo "Done."
