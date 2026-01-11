@@ -1,5 +1,5 @@
-#!/bin/sh
-set -eu
+#!/usr/bin/env bash
+set -euo pipefail
 
 if ! command -v brew >/dev/null 2>&1; then
   echo "Installing Homebrew..."
@@ -8,3 +8,14 @@ if ! command -v brew >/dev/null 2>&1; then
 else
   echo "Homebrew already installed"
 fi
+
+# macOSでHomebrewを使えるようにする
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  export PATH="/opt/homebrew/bin:$PATH"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+  export PATH="/usr/local/bin:$PATH"
+fi
+
+brew bundle --file=~/.Brewfile
