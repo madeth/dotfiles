@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+
+# mise が無いなら何もしない（brew bootstrap 順の問題を回避）
+if ! command -v mise >/dev/null 2>&1; then
+  echo "mise not found, skipping"
+  exit 0
+fi
+
+echo "Running mise install..."
+mise install
