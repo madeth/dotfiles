@@ -1,6 +1,15 @@
 #!/bin/sh
 set -eu
 
+# macOSでHomebrewを使えるようにする
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  export PATH="/opt/homebrew/bin:$PATH"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+  export PATH="/usr/local/bin:$PATH"
+fi
+
 # mise が無いなら何もしない（brew bootstrap 順の問題を回避）
 if ! command -v mise >/dev/null 2>&1; then
   echo "mise not found, skipping"
