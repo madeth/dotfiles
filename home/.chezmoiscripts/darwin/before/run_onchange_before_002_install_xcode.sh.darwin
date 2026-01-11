@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if xcode-select -p >/dev/null 2>&1; then
+  echo "Xcode Command Line Tools already installed"
+else
+  echo "Installing Xcode Command Line Tools..."
+  xcode-select --install
+  echo "⚠️ GUIが出るので Agree してください"
+  exit 1
+fi
