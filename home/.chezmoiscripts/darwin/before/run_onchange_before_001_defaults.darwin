@@ -34,6 +34,9 @@ defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 # キー長押しでアクセント記号メニューを表示する機能を無効化（キーリピートを優先）
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
+# 隠しファイルを表示
+defaults write NSGlobalDomain AppleShowAllFiles -bool true
+
 
 # ==============================================================================
 # Finder 設定
@@ -92,6 +95,13 @@ defaults write com.apple.screencapture disable-shadow -bool true
 
 # 設定を反映させるために SystemUIServer を再起動
 killall SystemUIServer
+
+# ==============================================================================
+# 日本語入力 (Japanese Input Method) Google IMEを推奨
+# ==============================================================================
+
+# ライブ変換を無効化
+defaults write com.apple.inputmethod.Kotoeri JIMPrefLiveConversionKey -bool false
 
 
 # ------------------------------------------------------------------------------
