@@ -4,6 +4,7 @@ typeset -U path fpath
 
 path=(
   /usr/local/opt/trash/bin(N-/)
+  /opt/homebrew/opt/trash/bin(N-/)
   $HOME/.local/bin(N-/)
   /usr/local/bin
   /usr/local/sbin
@@ -106,6 +107,7 @@ alias grep='grep --color=auto'
 alias g='git'
 alias t='tig'
 alias cz='chezmoi'
+alias czc='chezmoi git -- commit -e -m "$(chezmoi generate git-commit-message)"'
 alias d='docker'
 alias reload='source $HOME/.zshrc'
 if [[ "$os_name" == "Darwin" ]]; then
