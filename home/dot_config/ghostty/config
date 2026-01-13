@@ -57,3 +57,6 @@ keybind = ctrl+t>shift+k=resize_split:up,10
 keybind = ctrl+t>shift+j=resize_split:down,10
 keybind = ctrl+t>shift+h=resize_split:left,10
 keybind = ctrl+t>shift+l=resize_split:right,10
+
+# JISキーボードの¥をバックスラッシュとして入力
+keybind = ¥=text:\\
