@@ -1,0 +1,2 @@
+export MISE_SHIMS="$HOME/.local/share/mise/shims"
+export PATH="$MISE_SHIMS:$PATH"
