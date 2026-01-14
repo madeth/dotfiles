@@ -42,6 +42,3 @@ inline = '(( $+commands[zoxide] )) && eval "$(zoxide init zsh)"'
 
 [plugins.direnv]
 inline = '(( $+commands[direnv] )) && eval "$(direnv hook zsh)"'
-
-[plugins.homebrew]
-inline = '(( $+commands[brew] )) && eval "$(brew shellenv)"'
