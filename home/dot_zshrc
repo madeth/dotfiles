@@ -5,6 +5,8 @@ typeset -U path fpath
 path=(
   /usr/local/opt/trash/bin(N-/)
   /opt/homebrew/opt/trash/bin(N-/)
+  /opt/homebrew/opt/libpq/bin(N-/)
+  /opt/homebrew/opt/mysql-client/bin(N-/)
   $HOME/.local/bin(N-/)
   /usr/local/bin
   /usr/local/sbin
@@ -109,6 +111,8 @@ alias t='tig'
 alias cz='chezmoi'
 alias czc='chezmoi git -- commit -e -m "$(chezmoi generate git-commit-message)"'
 alias d='docker'
+alias dc='docker compose'
+alias c='claude'
 alias reload='source $HOME/.zshrc'
 if [[ "$os_name" == "Darwin" ]]; then
   alias rm='safe_trash'
